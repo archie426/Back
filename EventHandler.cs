@@ -10,16 +10,13 @@ namespace Back
 {
     public class EventHandler : IEventListener<UnturnedPlayerDeadEvent>
     {
-
-        private readonly IPermissionProvider _permissionProvider;
+        
         private readonly IPermissionChecker _permissionChecker;
-
         public Dictionary<IUser, Vector3> deaths;
         
         
-        public EventHandler(IPermissionProvider provider, IPermissionChecker checker)
+        public EventHandler(IPermissionChecker checker)
         {
-            _permissionProvider = provider;
             _permissionChecker = checker;
         }
 
