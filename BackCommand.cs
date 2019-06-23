@@ -43,8 +43,15 @@ namespace Back
             switch(permResult)
             {
                 case PermissionResult.Grant:
-                    await player.Entity.TeleportAsync(_eventHandler.deaths[context.User], player.Entity.Rotation);
-                    await context.User.SendMessageAsync("You have been teleported back to your last death");
+                    if (_eventHandler.deaths.ContainsKey(context.User))
+                    {
+                        await player.Entity.TeleportAsync(_eventHandler.deaths[context.User], player.Entity.Rotation);
+                        await context.User.SendMessageAsync("You have been teleported back to your last death");
+                    }
+                    else
+                    {
+                        await context.User.SendMessageAsync("You haven't died yet!");
+                    }
                     break;
                 case PermissionResult.Deny:
                     await context.User.SendMessageAsync("You do not have permission to use this command!"); //I swear there was a built in way for this?
