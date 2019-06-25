@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Rocket.API.Commands;
 using Rocket.API.Permissions;
+using Rocket.API.Player;
 using Rocket.API.User;
 using Rocket.Core.User;
 using Rocket.Unturned.Player;
@@ -36,21 +37,44 @@ namespace Back
 
         public async Task ExecuteAsync(ICommandContext context)
         {
-            UnturnedPlayer player = ((UnturnedUser)context.User).Player;
-            
             PermissionResult permResult = await _permissionChecker.CheckPermissionAsync(context.User, "back");
 
+            IUser target;
+            bool otherUser;
+
+            if (context.Parameters.Length >= 1)
+            {
+                target = await context.Parameters.GetAsync<IUser>(0);
+                otherUser = true;
+            }
+            else
+            {
+                target = context.User;
+                otherUser = false;
+            }
+
+            if (!(target is IUser paramType))
+            {
+                await context.User.SendMessageAsync("Invalid parameter");
+                return;
+            }
+            
+            UnturnedPlayer player = ((UnturnedUser)target).Player;
+            
             switch(permResult)
             {
                 case PermissionResult.Grant:
-                    if (_eventHandler.deaths.ContainsKey(context.User))
+                    if (_eventHandler.deaths.ContainsKey(target))
                     {
-                        await player.Entity.TeleportAsync(_eventHandler.deaths[context.User], player.Entity.Rotation);
+                        await player.Entity.TeleportAsync(_eventHandler.deaths[target], player.Entity.Rotation);
                         await context.User.SendMessageAsync("You have been teleported back to your last death");
                     }
                     else
                     {
-                        await context.User.SendMessageAsync("You haven't died yet!");
+                        if (otherUser)
+                            await context.User.SendMessageAsync("This player hasn't died yet!");
+                        else
+                            await context.User.SendMessageAsync("You haven't died yet!");
                     }
                     break;
                 case PermissionResult.Deny:

@@ -25,18 +25,16 @@ namespace Back
         {
             
             Vector3 location = @event.Position;
-
-            if (_permissionChecker.CheckPermissionAsync(@event.Player.User, "back").Result == PermissionResult.Grant)
+            
+            if (!deaths.ContainsKey(@event.Player.User))
             {
-                if (!deaths.ContainsKey(@event.Player.User))
-                {
-                    deaths.Add(@event.Player.User, location);  
-                }
-                else
-                {
-                    deaths[@event.Player.User] = location;
-                }
+                deaths.Add(@event.Player.User, location);  
             }
+            else
+            {
+                deaths[@event.Player.User] = location;
+            }
+            
         }
         
     }
