@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Rocket.API.Commands;
+using Rocket.API.Configuration;
 using Rocket.API.Permissions;
 using Rocket.API.Player;
 using Rocket.API.User;
@@ -27,12 +28,16 @@ namespace Back
 
         private readonly EventHandler _eventHandler;
         private readonly IPermissionChecker _permissionChecker;
+        private readonly IConfiguration _configuration; 
+        private readonly BackConfiguration _config;
 
 
-        public BackCommand(EventHandler eventHandler, IPermissionChecker permissionChecker)
+        public BackCommand(EventHandler eventHandler, IPermissionChecker permissionChecker, IConfiguration configuration)
         {
             _eventHandler = eventHandler;
             _permissionChecker = permissionChecker;
+            _configuration = configuration;
+            _config = _configuration.Get<BackConfiguration>();
         }
 
         public async Task ExecuteAsync(ICommandContext context)
@@ -42,15 +47,23 @@ namespace Back
             IUser target;
             bool otherUser;
 
-            if (context.Parameters.Length >= 1)
+            if (context.Parameters.Length >= 1 && _config.allowOtherPlayer)
             {
                 target = await context.Parameters.GetAsync<IUser>(0);
                 otherUser = true;
             }
             else
             {
-                target = context.User;
-                otherUser = false;
+                if (context.Parameters.Length >= 1 && _config.allowOtherPlayer)
+                {
+                    await context.User.SendMessageAsync("Other user functionality is disabled in the config");
+                    return;
+                }
+                else
+                {
+                    target = context.User;
+                    otherUser = false;
+                }
             }
 
             if (!(target is IUser paramType))
