@@ -54,7 +54,7 @@ namespace Back
             }
             else
             {
-                if (context.Parameters.Length >= 1 && _config.allowOtherPlayer)
+                if (context.Parameters.Length >= 1 && !_config.allowOtherPlayer)
                 {
                     await context.User.SendMessageAsync("Other user functionality is disabled in the config");
                     return;
