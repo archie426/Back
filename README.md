@@ -6,12 +6,8 @@ Permissions: back
 
 Thats pretty much it
 
-## Q n A
+## Features
 
-RM4 when?
-
-When I can be bothered
-
-If I give someone the permission after they die it doesn't work! 
-
-yes yes, I'll fix this. soon TM
+* Keeps track of players deaths in a dictionary
+* Easy to access dictionary for other plugins
+* Lightweight, simple configuration and commands
