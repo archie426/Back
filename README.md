@@ -14,6 +14,6 @@ Thats pretty much it
 
 ## Contributing
 
-Feel free to adapt this plugin to RM4, if you use some of my code just credit me somewhere.
+Feel free to use some of my code, just credit me somewhere.
 
-Please do not distribute, copy this plugins code (you can fork of course) without asking my permission first. 
+Please do not distribute, copy this plugins code entirely (you can fork of course) without asking my permission first. 
