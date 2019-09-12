@@ -6,12 +6,14 @@ Permissions: back
 
 Thats pretty much it
 
-## Q n A
+## Features
 
-RM4 when?
+* Keeps track of players deaths in a dictionary
+* Easy to access dictionary for other plugins
+* Lightweight, simple configuration and commands
 
-When I can be bothered
+## Contributing
 
-If I give someone the permission after they die it doesn't work! 
+Feel free to adapt this plugin to RM4, if you use some of my code just credit me somewhere.
 
-yes yes, I'll fix this. soon TM
+Please do not distribute, copy this plugins code (you can fork of course) without asking my permission first. 
