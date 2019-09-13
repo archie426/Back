@@ -48,7 +48,7 @@ namespace BackRM4
             }
         }
 
-        public AllowedCaller AllowedCaller { get; }
+        public AllowedCaller AllowedCaller { get; } = AllowedCaller.Player;
         public string Name { get; } = "back";
         public string Help { get; } = "Teleports you to your last death location";
         public string Syntax { get; } = "/back";
