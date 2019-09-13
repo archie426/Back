@@ -10,7 +10,7 @@ namespace BackRM4
     public class Back : RocketPlugin<BackConfiguration>
     {
 
-        public Back Instance;
+        public static Back Instance;
         
         protected override void Load()
         {
