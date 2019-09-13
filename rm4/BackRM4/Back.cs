@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Rocket.API;
 using Rocket.Core.Plugins;
 using Rocket.Unturned.Events;
 using Rocket.Unturned.Player;
@@ -34,14 +35,7 @@ namespace BackRM4
 
         public bool DeathShouldBeLogged(UnturnedPlayer player)
         {
-            //Need to figure out getting perms in RM4
-            
-            /*if (Instance.Configuration.Instance.allowOtherPlayer)
-            {
-                return true;
-            } */ 
-
-            return true;
+            return Instance.Configuration.Instance.allowOtherPlayer || player.HasPermission("back");
         }
         
     }
