@@ -28,4 +28,4 @@ Everything else is the same.
 
 # How to build/use. 
 
-You can build the separate projects for the different versions of Rocket. Building the solution probably won't work. In the future I will probably make them into separate branches and solutions but I can't be bothered right now and its not really needed.
+Just switch branches lol
