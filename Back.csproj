@@ -34,11 +34,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="lib\**" />
+    <Compile Remove="rm4\**" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="lib\**" />
+    <EmbeddedResource Remove="rm4\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="lib\**" />
+    <None Remove="rm4\**" />
   </ItemGroup>
 </Project>
