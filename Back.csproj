@@ -35,6 +35,9 @@
   <ItemGroup>
     <Compile Remove="lib\**" />
     <Compile Remove="rm4\**" />
+    <Compile Include="BackCommand.cs" />
+    <Compile Include="BackConfiguration.cs" />
+    <Compile Include="EventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="lib\**" />
