@@ -12,10 +12,16 @@ namespace BackRM4
 
         public static Back Instance;
         
-        protected override void LoadPlugin()
+        public override void LoadPlugin()
         {
             Instance = this;
             UnturnedPlayerEvents.OnPlayerDead += UnturnedPlayerEventsOnOnPlayerDead;
+        }
+        
+        public override void UnloadPlugin()
+        {
+            Instance = null;
+            UnturnedPlayerEvents.OnPlayerDead -= UnturnedPlayerEventsOnOnPlayerDead;
         }
         
         
